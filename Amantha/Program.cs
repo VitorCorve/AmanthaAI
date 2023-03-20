@@ -1,24 +1,27 @@
 ﻿using AmanthaConsole.Services;
 using AmanthaLogger;
 using AmanthaLogger.Models;
-
 using System.Reflection;
 
 namespace AmanthaConsole;
 
 public class Program
 {
+
     public static void Main(string[] args)
     {
-        #if DEBUG
         ConsoleLogProvider logProvider = new();
         Logger.Start(logProvider);
-        #endif
 
         DetermineVersions();
 
+        Thread.Sleep(3000);
+
+        Logger.Log();
+
         Console.ReadLine();
     }
+
 
     #pragma warning disable CS8602 // Dereference of a possibly null reference.
     /// <summary>

@@ -1,30 +1,33 @@
 ﻿using AmanthaLogger.Interfaces;
 using AmanthaLogger.Models;
+using AmanthaLogger.Services;
+
+using System.IO.Pipes;
 
 namespace AmanthaConsole.Services
 {
     internal class ConsoleLogProvider : ILoggingProvider
     {
         public Guid ID { get; private set; }
+        private StreamWriter _streamWriter;
+        private NamedPipeClientStream _pipeClient;
 
         public ConsoleLogProvider()
         {
             ID = Guid.NewGuid();
-            Console.ForegroundColor = ConsoleColor.Blue;
+            _pipeClient = new NamedPipeClientStream(".", "amanthaPipeServer", PipeDirection.Out);
+            _pipeClient.Connect();
+
+            _streamWriter = new StreamWriter(_pipeClient)
+            {
+                AutoFlush = true
+            };
         }
 
         public void Provide(LogObject log)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\r--------Execution--------");
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"Date: {log.Date:HH:mm:ss dd.MM.yy}\r");
-            Console.WriteLine($"Class name: {log.File}\r");
-            Console.WriteLine($"Assembly name: {log.AssemblyName}\r");
-            Console.WriteLine($"Line: {log.Line}\r");
-            Console.WriteLine($"Method name: {log.MethodName}\r");
-            Console.WriteLine($"Performance time: {log.PerformanceTime} ms\r");
-            Console.WriteLine($"Memory usage: {log.MemoryUsage} mb\r");
+            string view = LogObjectRepresenter.Stringify(log);
+            _streamWriter.Write(view);
         }
     }
 }
