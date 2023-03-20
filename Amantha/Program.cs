@@ -1,5 +1,8 @@
-﻿using AmanthaLogger;
+﻿using AmanthaConsole.Services;
+using AmanthaLogger;
 using AmanthaLogger.Models;
+
+using System.Reflection;
 
 namespace AmanthaConsole;
 
@@ -7,39 +10,40 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        #if DEBUG
         ConsoleLogProvider logProvider = new();
-
         Logger.Start(logProvider);
+        #endif
 
-        PerformanceStamp stamp = Logger.CreateStamp();
-
-        Logger.Log(stamp);
-
-        Operate();
+        DetermineVersions();
 
         Console.ReadLine();
     }
 
-    private static void Operate()
+    #pragma warning disable CS8602 // Dereference of a possibly null reference.
+    /// <summary>
+    /// Determine affected assemblies versions.
+    /// </summary>
+    private static void DetermineVersions()
     {
+        #if DEBUG
         PerformanceStamp stamp = Logger.CreateStamp();
+        #endif
 
-        List<string> result = new();
+        Console.ForegroundColor = ConsoleColor.DarkRed;
 
-        for (int i = 0; i < 100000; i++)
-        {
-            result.Add(Guid.NewGuid().ToString());
-        }
+        Assembly amanthaCore = Assembly.Load("AmanthaCore");
+        Assembly amanthaLogger = Assembly.Load("AmanthaLogger");
 
-        result.AddRange(result.Where(x => x.StartsWith("x")).ToList());
-        result = result.Skip(100)
-            .Take(100)
-            .Distinct()
-            .Skip(100)
-            .Take(100)
-            .Order()
-            .ToList();
+        string amanthaCoreVersion = $"AmanthaCore: {amanthaCore.FullName.Split(",")[1]}";
+        string amanthaLoggerVersion = $"AmanthaLogger: {amanthaLogger.FullName.Split(",")[1]}";
 
+        Console.WriteLine(amanthaCoreVersion);
+        Console.WriteLine(amanthaLoggerVersion);
+
+        #if DEBUG
         Logger.Log(stamp);
+        #endif
     }
+    #pragma warning restore CS8602 // Dereference of a possibly null reference.
 }

@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmanthaConsole", "Amantha\AmanthaConsole.csproj", "{AF2FF099-8A37-46FF-8E90-965EBF6B549E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmanthaCore", "AmanthaCore\AmanthaCore.csproj", "{DED2BC55-32A2-4BAE-AD54-CA606BAE4F6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmanthaCore", "AmanthaCore\AmanthaCore.csproj", "{DED2BC55-32A2-4BAE-AD54-CA606BAE4F6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmanthaLogger", "AmanthaLogger\AmanthaLogger.csproj", "{FF9D2F4B-09D9-4C1D-86C0-76A7942864CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmanthaLogger", "AmanthaLogger\AmanthaLogger.csproj", "{FF9D2F4B-09D9-4C1D-86C0-76A7942864CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

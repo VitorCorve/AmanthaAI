@@ -1,7 +1,7 @@
 ﻿using AmanthaLogger.Interfaces;
 using AmanthaLogger.Models;
 
-namespace AmanthaConsole
+namespace AmanthaConsole.Services
 {
     internal class ConsoleLogProvider : ILoggingProvider
     {
@@ -15,18 +15,16 @@ namespace AmanthaConsole
 
         public void Provide(LogObject log)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\r--------Execution--------");
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine($"Date: {log.Date:HH:mm:ss dd.MM.yy}\r");
             Console.WriteLine($"Class name: {log.File}\r");
             Console.WriteLine($"Assembly name: {log.AssemblyName}\r");
             Console.WriteLine($"Line: {log.Line}\r");
-            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"Method name: {log.MethodName}\r");
-            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"Performance time: {log.PerformanceTime} ms\r");
-            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"Memory usage: {log.MemoryUsage} mb\r");
-            Console.ForegroundColor = ConsoleColor.Blue;
         }
     }
 }
