@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmanthaConsole", "Amantha\AmanthaConsole.csproj", "{AF2FF099-8A37-46FF-8E90-965EBF6B549E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmanthaConsole", "AmanthaConsole\AmanthaConsole.csproj", "{AF2FF099-8A37-46FF-8E90-965EBF6B549E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AmanthaCore", "AmanthaCore\AmanthaCore.csproj", "{DED2BC55-32A2-4BAE-AD54-CA606BAE4F6B}"
 EndProject
