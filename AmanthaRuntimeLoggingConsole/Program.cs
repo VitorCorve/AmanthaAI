@@ -6,7 +6,7 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        PipeServer server = new();
+        using PipeServer server = new();
         server.Listen();
     }
 }

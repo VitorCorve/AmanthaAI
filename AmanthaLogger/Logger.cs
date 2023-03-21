@@ -28,7 +28,7 @@ namespace AmanthaLogger
             else
             {
                 _providers.Add(provider);
-                _logging = true;
+                _logging = _providers.Any();
             }
         }
 
@@ -40,7 +40,10 @@ namespace AmanthaLogger
         public static void Stop(ILoggingProvider provider)
         {
             if (_providers.Any(x => x.ID.Equals(provider.ID)))
-                _logging = false;
+            {
+                _providers.Remove(provider);
+                _logging = _providers.Any();
+            }
             else
                 throw new Exception($"Unable to find provider with id {provider.ID} from type {provider.GetType()}");
         }

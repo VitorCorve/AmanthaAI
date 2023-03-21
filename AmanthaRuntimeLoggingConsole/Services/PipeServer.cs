@@ -5,36 +5,36 @@ namespace AmanthaRuntimeLoggingConsole.Services
     internal class PipeServer : IDisposable
     {
         private NamedPipeServerStream _pipeServerStream;
-        private StreamReader _reader;
+        private readonly byte[] _buffer = new byte[1024];
 
-        public PipeServer()
+        internal PipeServer()
         {
-            _pipeServerStream = new NamedPipeServerStream("amanthaPipeServer", PipeDirection.In);
-            _reader = new StreamReader(_pipeServerStream);
+            _pipeServerStream = new NamedPipeServerStream("amanthaPipeServer", PipeDirection.In, 1, PipeTransmissionMode.Byte);
         }
+
         internal void Listen()
         {
             _pipeServerStream.WaitForConnection();
 
-            string temp = string.Empty;
-
             while (true)
             {
-                temp = _reader.ReadLine();
+                int length = _pipeServerStream.Read(_buffer, 0, _buffer.Length);
 
-                if (!string.IsNullOrEmpty(temp))
-                    ConsoleRuntimeLogProvider.Instance.Log(temp);
+                byte[] result = new byte[length];
+
+                Array.Copy(_buffer, result, length);
+
+                Dictionary<string, string?> view = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string?>>(result);
+
+                if (view != null)
+                    ConsoleRuntimeLogProvider.Log(view);
             }
         }
 
         public void Dispose()
         {
-            if (_pipeServerStream != null)
-            {
-                _pipeServerStream.Close();
-                _pipeServerStream?.Dispose();
-                _reader?.Dispose();
-            }
+            _pipeServerStream?.Close();
+            _pipeServerStream?.Dispose();
         }
     }
 }

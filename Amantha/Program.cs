@@ -15,8 +15,6 @@ public class Program
 
         DetermineVersions();
 
-        Thread.Sleep(3000);
-
         Logger.Log();
 
         Console.ReadLine();

@@ -2,28 +2,17 @@
 {
     internal class ConsoleRuntimeLogProvider
     {
-        private static ConsoleRuntimeLogProvider? _instance;
-        private static object _instanceLock = new();
-
         static ConsoleRuntimeLogProvider()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
         }
 
-        public static ConsoleRuntimeLogProvider Instance
+        public static void Log(Dictionary<string, string?> view)
         {
-            get
-            {
-                lock (_instanceLock)
-                    _instance ??= new ConsoleRuntimeLogProvider();
+            Console.WriteLine("\r--------Execution--------");
 
-                return _instance;
-            }
-        }
-
-        public void Log(string view)
-        {
-            Console.WriteLine(view);
+            foreach (var key in view.Keys)
+                Console.WriteLine($"{key}: {view[key]}");
         }
     }
 }

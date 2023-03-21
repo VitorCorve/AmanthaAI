@@ -1,6 +1,6 @@
 ﻿namespace AmanthaLogger.Models
 {
-    public class LogObject
+    sealed public class LogObject
     {
         public DateTime Date;
         public string? File;
