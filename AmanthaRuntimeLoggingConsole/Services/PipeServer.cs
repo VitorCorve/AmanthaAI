@@ -24,16 +24,25 @@ namespace AmanthaRuntimeLoggingConsole.Services
 
                 Array.Copy(_buffer, result, length);
 
-                Dictionary<string, string?> view = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string?>>(result);
+                if (result.Length > 0)
+                {
+                    try
+                    {
+                        Dictionary<string, string?> view = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string?>>(result);
 
-                if (view != null)
-                    ConsoleRuntimeLogProvider.Log(view);
+                        if (view != null)
+                            ConsoleRuntimeLogProvider.Log(view);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                }
             }
         }
 
         public void Dispose()
         {
-            _pipeServerStream?.Close();
             _pipeServerStream?.Dispose();
         }
     }

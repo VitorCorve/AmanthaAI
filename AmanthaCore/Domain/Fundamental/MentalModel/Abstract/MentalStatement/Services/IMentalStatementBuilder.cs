@@ -1,12 +1,26 @@
-﻿using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Model;
-using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatementProperty.Model;
+﻿using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatementProperty.Model;
 
 namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Services
 {
-    internal interface IMentalStatementBuilder<TStatement> where TStatement : IMentalStatement, new()
+    /// <summary>
+    /// Mental statement builder. Allows to easely build an <see cref="IMentalStatement"/> with required <see cref="IMentalStatementProperty"/> properties.
+    /// </summary>
+    /// <typeparam name="IMentalStatement"></typeparam>
+    internal interface IMentalStatementBuilder<IMentalStatement>
     {
-        IMentalStatementBuilder<TStatement> ApplyProperty<TProperty>(TProperty statement) where TProperty : IMentalStatementProperty, new();
+        /// <summary>
+        /// This builder contains <see cref="IMentalStatement"/> incapsulated entity inside.
+        /// Every each <see cref="ApplyProperty(IMentalStatementProperty)"/> invokation will call inner
+        /// ApplyProperty of <see cref="IMentalStatement"/> and increase properties count, untill it will be builded.
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns></returns>
+        internal IMentalStatementBuilder<IMentalStatement> ApplyProperty(IMentalStatementProperty property);
 
-        TStatement Build();
+        /// <summary>
+        /// Builds an <see cref="IMentalStatement"/> with depended <see cref="IMentalStatementProperty"/>.
+        /// </summary>
+        /// <returns></returns>
+        internal IMentalStatement Build();
     }
 }

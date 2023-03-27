@@ -61,7 +61,7 @@ namespace AmanthaLogger
             {
                 LogObject log = new(
                     date: DateTime.Now,
-                    file: file,
+                    file: Path.GetFileName(file),
                     assemblyName: Assembly.GetCallingAssembly().FullName,
                     methodName: methodName,
                     performanceTime: 0.0,
@@ -88,7 +88,7 @@ namespace AmanthaLogger
 
                 LogObject log = new(
                     date: DateTime.Now,
-                    file: file,
+                    file: Path.GetFileName(file),
                     assemblyName: Assembly.GetCallingAssembly().FullName,
                     methodName: methodName,
                     performanceTime: match is null ? 0.0 : (DateTime.Now - match.DateCreated).TotalSeconds,

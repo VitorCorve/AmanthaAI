@@ -1,4 +1,7 @@
 ﻿using AmanthaConsole.Services;
+
+using AmanthaCore.Domain.Fundamental.MentalModel.Common;
+
 using AmanthaLogger;
 using AmanthaLogger.Models;
 using System.Reflection;
@@ -14,6 +17,8 @@ public class Program
         Logger.Start(logProvider);
 
         DetermineVersions();
+
+        MentalSharingInterface sharingInterface = new();
 
         Logger.Log();
 

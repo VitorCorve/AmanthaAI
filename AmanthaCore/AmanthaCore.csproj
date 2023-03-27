@@ -8,4 +8,8 @@
 	<Deterministic>false</Deterministic>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AmanthaLogger\AmanthaLogger.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -3,6 +3,9 @@ using AmanthaLogger.Models;
 
 namespace AmanthaLogger.DefaultProviders
 {
+    /// <summary>
+    /// Default <see cref="ILoggingProvider"/> implementation to drop logs into Debug output.
+    /// </summary>
     public class DebugLogProvider : ILoggingProvider
     {
         private static DebugLogProvider? _instance;
@@ -37,6 +40,7 @@ namespace AmanthaLogger.DefaultProviders
             System.Diagnostics.Debug.WriteLine($"Method name: {log.MethodName}");
             System.Diagnostics.Debug.WriteLine($"Performance time: {log.PerformanceTime} ms");
             System.Diagnostics.Debug.WriteLine($"Memory usage: {log.MemoryUsage} mb");
+            System.Diagnostics.Debug.WriteLine($"StackTrace: {log.StackTrace} mb");
         }
     }
 }
