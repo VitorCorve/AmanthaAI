@@ -20,8 +20,8 @@
                 { nameof(logObject.MethodName), logObject.MethodName },
                 { nameof(logObject.PerformanceTime), logObject.PerformanceTime.ToString() },
                 { nameof(logObject.Line), logObject.MemoryUsage.ToString() },
-                { nameof(logObject.MemoryUsage), logObject.MemoryUsage.ToString() },
-                { nameof(logObject.StackTrace), logObject.StackTrace.ToString() }
+                { nameof(logObject.MemoryUsage), logObject.MemoryUsage.ToString() + " MB" },
+                { nameof(logObject.StackTrace), logObject.StackTrace?.ToString() }
             };
 
             return pairs;

@@ -39,8 +39,8 @@ namespace AmanthaLogger.DefaultProviders
             System.Diagnostics.Debug.WriteLine($"Line: {log.Line}");
             System.Diagnostics.Debug.WriteLine($"Method name: {log.MethodName}");
             System.Diagnostics.Debug.WriteLine($"Performance time: {log.PerformanceTime} ms");
-            System.Diagnostics.Debug.WriteLine($"Memory usage: {log.MemoryUsage} mb");
-            System.Diagnostics.Debug.WriteLine($"StackTrace: {log.StackTrace} mb");
+            System.Diagnostics.Debug.WriteLine($"Memory usage: {log.MemoryUsage} MB");
+            System.Diagnostics.Debug.WriteLine($"StackTrace: {log.StackTrace}");
         }
     }
 }

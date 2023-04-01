@@ -1,4 +1,5 @@
-﻿using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatementProperty.Model;
+﻿using AmanthaCore.Domain.Fundamental.Abstractions.Types.MentalStatement;
+using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatementProperty.Model;
 
 namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Model
 {
@@ -20,5 +21,10 @@ namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Mo
         /// </summary>
         /// <param name="property"></param>
         internal void ApplyProperty(IMentalStatementProperty property);
+
+        /// <summary>
+        /// Represent statement type.
+        /// </summary>
+        internal MentalStatementType Type { get; }
     }
 }

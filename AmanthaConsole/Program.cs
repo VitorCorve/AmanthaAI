@@ -3,6 +3,7 @@
 using AmanthaCore.Domain.Fundamental.MentalModel.Common;
 
 using AmanthaLogger;
+using AmanthaLogger.DefaultProviders;
 using AmanthaLogger.Models;
 using System.Reflection;
 
@@ -14,7 +15,9 @@ public class Program
     public static void Main(string[] args)
     {
         ConsoleLogProvider logProvider = new();
+
         Logger.Start(logProvider);
+        Logger.Start(DebugLogProvider.Instance);
 
         DetermineVersions();
 

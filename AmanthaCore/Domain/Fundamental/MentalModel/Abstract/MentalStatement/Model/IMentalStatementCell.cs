@@ -22,10 +22,10 @@ namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Se
         internal IMentalStatementMediator? Mediator { get; }
 
         /// <summary>
-        /// Initializes the <see cref="Statements"/> by <see cref="IMentalStatementBuilder{IMentalStatement}"/>.
+        /// Initializes statement.
         /// </summary>
-        /// <param name="builder"></param>
-        internal void InitializeStatement(IMentalStatementBuilder<IMentalStatement> builder);
+        /// <param name="statement"></param>
+        internal void InitializeStatement(IMentalStatement statement);
 
         /// <summary>
         /// Initializes mediator.

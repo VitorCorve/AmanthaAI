@@ -57,7 +57,7 @@ namespace AmanthaLogger.Models
             MethodName = methodName;
             PerformanceTime = performanceTime;
             Line = line;
-            MemoryUsage = GC.GetTotalMemory(false) / 1024 / 1024;
+            MemoryUsage = GC.GetTotalAllocatedBytes(false) / 1024 / 1024;
         }
 
         private string BuildTrace()

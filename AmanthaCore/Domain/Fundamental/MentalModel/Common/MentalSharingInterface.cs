@@ -1,9 +1,9 @@
-﻿using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Affectors;
+﻿using AmanthaCore.Domain.Fundamental.Abstractions.Factory;
+using AmanthaCore.Domain.Fundamental.Abstractions.Types.MentalStatement;
+using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Affectors;
 using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Model;
 using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Services;
-using AmanthaCore.Domain.Fundamental.MentalModel.Concrete.MentalStatement.Affectors;
-using AmanthaCore.Domain.Fundamental.MentalModel.Concrete.MentalStatement.Model;
-using AmanthaCore.Domain.Fundamental.MentalModel.Concrete.MentalStatement.Services;
+using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatementProperty.Model;
 
 using AmanthaLogger;
 
@@ -13,25 +13,24 @@ namespace AmanthaCore.Domain.Fundamental.MentalModel.Common
     {
         public MentalSharingInterface()
         {
-            MentalStatementManager manager = new();
+            IMentalStatementMediator mediator = StatementFactory.FactoryMethod(MentalStatementMediatorType.Default);
 
-            IMentalStatementBuilder<IMentalStatement> builder = new MentalStatementBuilder<MentalStatement>();
+            IMentalStatementCell[] cells = StatementFactory.ArrayFactoryMethod(MentalStatementCellType.Default, 5);
 
-            IMentalStatementMediatorsFactory mediatorsFactory = new MentalStatementMediatorsFactory();
+            IMentalStatementBuilder builder = StatementFactory.FactoryMethod(MentalStatementBuilderType.StatementBuilder, MentalStatementType.Default);
 
-            IMentalStatementMediator mediator = mediatorsFactory.FactoryMethod<MentalStatementMediator>();
+            IMentalStatementProperty property = StatementFactory.FactoryMethod(MentalStatementProperty.Default);
 
-            IMentalStatementCell[] cells = new IMentalStatementCell[5];
+            IMentalStatement statement = builder.ApplyProperty(property)
+                .Build();
 
             for (int i = 0; i < 5; i++)
             {
-                IMentalStatementCell cell = new MentalStatementCell();
-
-                cell.InitializeStatement(builder);
-                cell.InitializeMediator(mediator);
-
-                cells[i] = cell;
+                cells[i].InitializeStatement(statement);
+                cells[i].InitializeMediator(mediator);
             }
+
+            IMentalStatementManager manager = StatementFactory.FactoryMethod(MentalStatementManagerType.Default);
 
             manager.InitializeCells(cells);
             manager.ReceiveEntropySource(new object());
