@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AmanthaDotnetExtensions\AmanthaDotnetExtensions.csproj" />
     <ProjectReference Include="..\AmanthaLogger\AmanthaLogger.csproj" />
   </ItemGroup>
 

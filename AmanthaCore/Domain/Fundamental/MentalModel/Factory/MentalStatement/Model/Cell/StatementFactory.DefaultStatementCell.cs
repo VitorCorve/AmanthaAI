@@ -1,6 +1,9 @@
-﻿using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Affectors;
+﻿using AmanthaCore.Domain.Fundamental.Abstractions.Types.MentalStatement;
+using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Affectors;
 using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Model;
 using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Services;
+
+using AmanthaDotnetExtensions;
 
 using AmanthaLogger;
 using AmanthaLogger.Models;
@@ -16,17 +19,20 @@ namespace AmanthaCore.Domain.Fundamental.Abstractions.Factory
         {
             public IEnumerable<IMentalStatement> Statements { get; private set; }
 
-            public IMentalStatementMediator? Mediator { get; private set; }
+            public IMentalStatementMediator Mediator { get; private set; }
 
             internal DefaultStatementCell()
             {
                 Statements = new List<IMentalStatement>();
+                Mediator = FactoryMethod(MentalStatementMediatorType.Default);
                 Logger.Log();
             }
 
             public void Entropy<T>(T source)
             {
                 PerformanceStamp stamp = Logger.CreateStamp();
+
+                Statements.ForEach(Mediator.Affect);
 
                 Logger.Log(stamp);
             }

@@ -23,6 +23,14 @@ namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Mo
         internal void ApplyProperty(IMentalStatementProperty property);
 
         /// <summary>
+        /// Removes <see cref="IMentalStatementProperty"/> property from current <see cref="Properties"/> collection.
+        /// <para></para>
+        /// Throws an exception if <see cref="Properties"/> do not contains selected property.
+        /// </summary>
+        /// <param name="property"></param>
+        internal void RemoveProperty(IMentalStatementProperty property);
+
+        /// <summary>
         /// Represent statement type.
         /// </summary>
         internal MentalStatementType Type { get; }

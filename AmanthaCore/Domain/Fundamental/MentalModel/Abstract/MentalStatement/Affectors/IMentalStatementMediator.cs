@@ -1,4 +1,5 @@
-﻿using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Model;
+﻿using AmanthaCore.Domain.Fundamental.Abstractions.Types.MentalStatement;
+using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Model;
 
 namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Affectors
 {
@@ -9,6 +10,11 @@ namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Af
     /// </summary>
     internal interface IMentalStatementMediator
     {
+
+        /// <summary>
+        /// Represent mediator type.
+        /// </summary>
+        internal MentalStatementMediatorType Type { get; }
         /// <summary>
         /// Affects to <see cref="IMentalStatement"/> statement.
         /// </summary>

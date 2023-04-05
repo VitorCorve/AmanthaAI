@@ -5,6 +5,7 @@
     /// </summary>
     internal enum MentalStatementProperty
     {
-        Default
+        Default,
+        Magnitude
     }
 }

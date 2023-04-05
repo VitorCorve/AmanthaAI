@@ -25,5 +25,8 @@ namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Mo
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         internal void ReceiveEntropySource<T>(T source);
+
+
+        internal IEnumerable<IMentalStatementView> GetStatement();
     }
 }

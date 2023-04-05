@@ -13,6 +13,7 @@
         Indifferent,
         Feared,
         Usual,
-        Relaxing
+        Relaxing,
+        Insulted
     }
 }

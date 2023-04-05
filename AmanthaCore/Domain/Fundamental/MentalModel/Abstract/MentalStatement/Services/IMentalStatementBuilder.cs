@@ -1,4 +1,5 @@
-﻿using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Model;
+﻿using AmanthaCore.Domain.Fundamental.Abstractions.Types.MentalStatement;
+using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Model;
 using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatementProperty.Model;
 
 namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Services
@@ -17,9 +18,9 @@ namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Se
         internal IMentalStatementBuilder ApplyProperty(IMentalStatementProperty property);
 
         /// <summary>
-        /// Builds an <see cref="IMentalStatement"/> with depended <see cref="IMentalStatementProperty"/>.
+        /// Builds an <see cref="IMentalStatement"/> with depended <see cref="IMentalStatementProperty"/> and selected <see cref="MentalStatementType"/>.
         /// </summary>
         /// <returns></returns>
-        internal IMentalStatement Build();
+        internal IMentalStatement Build(MentalStatementType type);
     }
 }

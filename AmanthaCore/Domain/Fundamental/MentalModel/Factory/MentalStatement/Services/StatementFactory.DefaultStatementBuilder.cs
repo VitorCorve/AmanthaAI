@@ -15,13 +15,11 @@ namespace AmanthaCore.Domain.Fundamental.Abstractions.Factory
         /// </summary>
         private class DefaultStatementBuilder : IMentalStatementBuilder
         {
-            private IMentalStatement _statement;
-            private readonly MentalStatementType _statementType;
+            private readonly List<IMentalStatementProperty> _properties;
 
-            internal DefaultStatementBuilder(MentalStatementType type)
+            internal DefaultStatementBuilder()
             {
-                _statementType = type;
-                _statement = FactoryMethod(_statementType);
+                _properties = new List<IMentalStatementProperty>();
 
                 Logger.Log();
             }
@@ -30,20 +28,23 @@ namespace AmanthaCore.Domain.Fundamental.Abstractions.Factory
             {
                 PerformanceStamp stamp = Logger.CreateStamp();
 
-                _statement.ApplyProperty(property);
+                _properties.Add(property);
 
                 Logger.Log(stamp);
 
                 return this;
             }
 
-            public IMentalStatement Build()
+            public IMentalStatement Build(MentalStatementType type)
             {
                 PerformanceStamp stamp = Logger.CreateStamp();
 
-                IMentalStatement result = _statement;
+                IMentalStatement result = FactoryMethod(type);
 
-                _statement = FactoryMethod(_statementType);
+                foreach (IMentalStatementProperty property in _properties)
+                    result.ApplyProperty(property);
+                
+                _properties.Clear();
 
                 Logger.Log(stamp);
 

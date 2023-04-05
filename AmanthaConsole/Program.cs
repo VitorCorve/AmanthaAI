@@ -1,5 +1,6 @@
 ﻿using AmanthaConsole.Services;
 
+using AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Model;
 using AmanthaCore.Domain.Fundamental.MentalModel.Common;
 
 using AmanthaLogger;
@@ -22,6 +23,13 @@ public class Program
         DetermineVersions();
 
         MentalSharingInterface sharingInterface = new();
+
+        IEnumerable<IMentalStatementView> statementInfo = sharingInterface.GetStatement();
+
+        Console.WriteLine();
+
+        foreach (var info in statementInfo)
+            Console.WriteLine($"Type: {info.Type}\t Magnitude: {info.Magnitude}");
 
         Logger.Log();
 

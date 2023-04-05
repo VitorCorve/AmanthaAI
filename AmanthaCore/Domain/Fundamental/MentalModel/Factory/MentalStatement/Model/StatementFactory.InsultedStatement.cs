@@ -9,12 +9,13 @@ namespace AmanthaCore.Domain.Fundamental.Abstractions.Factory
 {
     internal sealed partial class StatementFactory
     {
-        private class HappyStatement : IMentalStatement
+        private class InsultedStatement : IMentalStatement
         {
             public IEnumerable<IMentalStatementProperty> Properties { get; set; } = new List<IMentalStatementProperty>();
 
-            public MentalStatementType Type { get; } = MentalStatementType.Happy;
-            internal HappyStatement()
+            public MentalStatementType Type { get; } = MentalStatementType.Insulted;
+
+            internal InsultedStatement()
             {
                 Logger.Log();
             }
@@ -23,7 +24,6 @@ namespace AmanthaCore.Domain.Fundamental.Abstractions.Factory
             {
                 if (Properties is null)
                     throw new Exception("Properties is null");
-
                 PerformanceStamp stamp = Logger.CreateStamp();
 
                 if (Properties is List<IMentalStatementProperty> list)

@@ -5,6 +5,8 @@
     /// </summary>
     internal enum MentalStatementMediatorType
     {
-        Default
+        Default,
+        Pain,
+        Pleasure
     }
 }

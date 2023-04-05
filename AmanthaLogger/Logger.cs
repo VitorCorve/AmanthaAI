@@ -12,8 +12,8 @@ namespace AmanthaLogger
     public static class Logger
     {
         private static bool _logging;
-        private static List<ILoggingProvider> _providers = new();
-        private static List<PerformanceStamp> _stamps = new();
+        private readonly static List<ILoggingProvider> _providers = new();
+        private readonly static List<PerformanceStamp> _stamps = new();
 
         /// <summary>
         /// Register <see cref="ILoggingProvider"/> instance if not exists. Else, will throw an error.

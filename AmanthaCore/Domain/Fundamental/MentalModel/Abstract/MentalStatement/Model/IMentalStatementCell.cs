@@ -17,9 +17,9 @@ namespace AmanthaCore.Domain.Fundamental.MentalModel.Abstract.MentalStatement.Se
         internal IEnumerable<IMentalStatement> Statements { get; }
 
         /// <summary>
-        /// Mediator itself. Should be available for reading only. Allows nullable.
+        /// Mediator itself. Should be available for reading only.
         /// </summary>
-        internal IMentalStatementMediator? Mediator { get; }
+        internal IMentalStatementMediator Mediator { get; }
 
         /// <summary>
         /// Initializes statement.

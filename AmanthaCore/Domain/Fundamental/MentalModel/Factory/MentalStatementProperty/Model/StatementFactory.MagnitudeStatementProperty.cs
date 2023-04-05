@@ -9,11 +9,11 @@ namespace AmanthaCore.Domain.Fundamental.Abstractions.Factory
         /// <summary>
         /// Default <see cref="IMentalStatementProperty"/> interface implementation for architecture building purpose.
         /// </summary>
-        private class DefaultStatementProperty : IMentalStatementProperty
+        private class MagnitudeStatementProperty : IMentalStatementProperty
         {
             public PropertyMagnitude Magnitude { get; private set; }
 
-            internal DefaultStatementProperty()
+            internal MagnitudeStatementProperty()
             {
                 Logger.Log();
             }
